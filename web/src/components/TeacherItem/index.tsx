@@ -4,30 +4,49 @@ import TeacherList from '../../pages/TeacherForm';
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-function TeacherItem(){
+export interface Teacher {
+    id: number,
+    name: string,
+    whatsapp: string,
+    avatar: string,
+    coast: number,
+    subject: string,
+    bio: string
+}
+
+interface TeacherItemsProps{
+    teacher: Teacher 
+}
+
+const TeacherItem: React.FC<TeacherItemsProps> = ({teacher}) => {
+    function createNewConnection(){
+        api.post('connections', {
+            user_id: teacher.id
+        })
+    }
+    
     return(
         <article className="teacher-item" >
             <header>
-                <img src="https://media-exp1.licdn.com/dms/image/C4D03AQED6PKjl4nq5w/profile-displayphoto-shrink_200_200/0?e=1602115200&v=beta&t=7ZJ6y9fc0eBQQJFaT_khCSc9_VK2aKG2Ljun4WagJ1Q" alt="Lucas Barbosa"/>
+                <img src={teacher.avatar}/>
                 <div>
-                    <strong>Lucas Barbosa</strong>
-                    <span>Programação</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
-            <p>
-            Iniciei meus estudo em programação e tecnologias na área de Informática em 2017 e de lá para cá tenho amado cada vez mais essa área e me aprofundado bastante. <br/><br/>
-            Atualmente estou estudando mais as tecnologias omnstack: JavaScript, React, React Native e buscando cada vez mais por meus conhecimentos a prova! 
+            <p> {teacher.bio}
             </p>
             <footer>
                 <p>
                     Preço por aula
-                    <strong>R$ 80,00</strong>
+                    <strong>R$ {teacher.coast}</strong>
                 </p>
-                <button type='button'>
+                <a target="_blank" onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`}>
                     <img src={whatsappIcon} alt="Whatsapp"/>
                     Entrar em contato
-                </button>
+                </a>
             </footer>
         </article>
     );

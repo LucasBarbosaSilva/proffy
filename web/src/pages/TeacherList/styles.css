@@ -7,45 +7,30 @@
     margin-top: 3.2rem;
 }
 
-#search-teachers label{
-    color: var(--color-text-in-primary);
-}
-
-#search-teachers .input-block{
-    position: relative;
-}
-                    /* Todo input block
-                    Que antes dele tem outro */
-#search-teachers .input-block + .input-block{
-    margin-top: 1.4rem;
-}
-
-#search-teachers .input-block label{
-    font-size: 1.4rem;
-}
-
-#search-teachers .input-block input{
+#search-teachers button{
     width: 100%;
     height: 5.6rem;
-    margin-top: 0.8rem;
+    background-color: var(--color-secundary);
+    color: var(--color-button-text);
+    border: 0;
     border-radius: 0.8rem;
-    background-color: var(--color-input-background);
-    border: 1px solid var(--color-line-in-white);
-    outline: 0;
-    padding: 0 1.6rem;
-    font: 1.6rem Archivo;
+    text-decoration: none;
+    font: 700 1.6rem Archivo ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 3.2rem;
+
 }
-                            /* Quando algum elemento dentro 
-                            do input block estiver selecionado */
-#search-teachers .input-block:focus-within::after{
-    width: calc(100%-3.2rem);
-    height: 2px;
-    content: ''; /*Obrigatório*/
-    background-color: var(--color-primary-light);
-    position: absolute;
-    left: 1.6rem;
-    right: 1.6rem;
-    bottom: 0;
+
+#search-teachers button:hover{
+    background-color: var(--color-secundary-dark);
+}
+
+#search-teachers label{
+    color: var(--color-text-in-primary);
 }
 
 #page-teachers-list{
@@ -59,14 +44,15 @@
     } 
     #search-teachers{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         column-gap: 16px;
         position: absolute;
         bottom: -28px;
 
     }
 
-    #search-teachers .input-block + .input-block{
+    #search-teachers .input-block + .input-block,
+    #search-teachers .select-block + .select-block{
         margin-top: 0rem;
     }
 

@@ -8,6 +8,7 @@ import './styles.css';
 
 interface PageHeaderProps{
     title: string; //Para não ser obrigatória eu teria de passar um ? e definir um valor padrão
+    description?: string;
 }
                         //Uma função do tipo componente no react
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
@@ -23,6 +24,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
             <div className="header-content">
                 <strong>{props.title}</strong>
+                { props.description && <p>{props.description}</p> }
 
                 {props.children}
             </div>
