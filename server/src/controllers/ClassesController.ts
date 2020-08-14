@@ -20,7 +20,6 @@ export default class ClassesController{
             })
         }
 
-        
         const subject = filters.subject as string;
         const week_day = filters.week_day as string;
         const time = filters.time as string;
@@ -41,7 +40,6 @@ export default class ClassesController{
             .join('users', 'classes.users_id', '=', 'users.id')
             .select(['classes.*', 'users.*']);
 
-
         return response.json(classes);
 
     }
@@ -49,11 +47,11 @@ export default class ClassesController{
     async create (request: Request, response: Response){
         const {
             name,
-                avatar,
-                whatsapp,
-                bio,
-                subject,
-                coast,
+            avatar,
+            whatsapp,
+            bio,
+            subject,
+            coast,
             schedule    
         } = request.body;
     
@@ -101,5 +99,13 @@ export default class ClassesController{
             })
     
         }
+    }
+
+    async list(request: Request, response: Response){
+        const allClasses = await db('classes')
+            .select(['classes.*', 'users.*'])    
+            .join('users', 'classes.users_id', '=', 'users.id');
+        
+        return response.json(allClasses);
     }
 } 

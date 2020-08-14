@@ -19,6 +19,7 @@ function Landing(){
         api.get('connections').then(response => {
             const {total} = response.data;
 
+            
             setTotalConnections(total);
         });
     }, []); //Deixando vazio ele vai iniciar quando a tela for exibida

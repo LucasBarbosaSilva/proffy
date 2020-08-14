@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, {Teacher} from '../../components/TeacherItem';
@@ -12,10 +12,17 @@ import api from '../../services/api';
 function TeacherList(){
 
     const [teachers, setTeachers] = useState([]);
-     
     const [subject, setSubject] = useState('');
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
+
+    async function allTeachers(){
+        api.get('all-classes').then(response => {
+            
+            setTeachers(response.data);
+        });
+    }
+    
 
     async function searchTeachers(e:FormEvent){
         e.preventDefault();
@@ -27,9 +34,10 @@ function TeacherList(){
                 time
             }
         });
-
+        
         setTeachers(response.data);
     }
+    
     return(
         <div id="page-teacher-list" className="container">
             <PageHeader title="Estes são seus proffys disponíveis">
@@ -77,9 +85,11 @@ function TeacherList(){
                     </button>
                 </form>
             </PageHeader>
-
+            
+            
+            
             <main id="page-teachers-list" >
-                
+            <button id="button-all-teachers" onClick={allTeachers} >Mostrar Todos Os Professores!</button>  
                 { teachers.map((teacher: Teacher )  => {
                     return <TeacherItem key={ teacher.id } teacher={teacher}/>
                 }) }
