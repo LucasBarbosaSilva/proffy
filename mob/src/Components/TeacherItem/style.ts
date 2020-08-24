@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
 
     favoriteButton: {
-        backgroundColor: '#8257e5',
+        backgroundColor: '#8257e3',
         width: 56,
         height: 56,
         borderRadius: 8,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Archivo_700Bold'
     },
     favorited: {
-        backgroundColor: '#e33de3'
+        backgroundColor: '#e33d3d'
     },
 
 });
