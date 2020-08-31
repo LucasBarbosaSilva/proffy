@@ -24,11 +24,9 @@
 
 ## :bookmark: O que é?
 
-O **Proffy** é uma aplicação Web e Mobile desenvolvida durante a Next Level Week com o objetivo de auxiliar na conexão entre os alunos e os professores. Logo, esta aplicação oferece aos professores a possibilidade de registrar aulas, podendo adicionar informações como a disciplina, o custo e horário e aos alunos a possibilidade de buscar pelas aulas cadastradas.
+O **Proffy** é uma aplicação Web e Mobile desenvolvida durante a Next Level Week, projeto da [Rocketseat](https://rocketseat.com.br/) com o objetivo de auxiliar na conexão entre os alunos e os professores. Logo, esta aplicação oferece aos professores a possibilidade de registrar aulas, podendo adicionar informações como a disciplina, o custo e horário e aos alunos a possibilidade de buscar pelas aulas cadastradas.
   
-Este projeto foi idealizado pensando no dia **6 de agosto**, onde se comemora o **Dia Nacional dos Profissionais da Educação**.
-  
-Essa aplicação foi realizada durante a Next **Level Week #2**, projeto da [Rocketseat](https://rocketseat.com.br/).
+Este projeto foi idealizado pensando no dia **6 de agosto**, onde se comemora o **Dia Nacional dos Profissionais da Educação**
 
 ## :bookmark: Exemplos de uso
 ![WhatsApp Image 2020-08-25 at 11 02 24 PM (2)](https://user-images.githubusercontent.com/58981172/91677326-bd8b8000-eb18-11ea-9271-b55f58e68c8a.jpeg)
