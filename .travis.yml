@@ -1,4 +1,1 @@
-language: typescript
-rvm:
- - 1.0
- - proffy
+language: node_js
