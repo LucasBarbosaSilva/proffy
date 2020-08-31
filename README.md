@@ -4,8 +4,10 @@
   Node.js | ReactJS | React Native
 </h1>
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/HigorSnt/proffy?style=flat-square">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/HigorSnt/proffy?style=flat-square">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/LucasBarbosaSilva/proffy?style=flat-square">
+  <img alt="GitHub forks count" src="https://img.shields.io/github/forks/LucasBarbosaSilva/proffy?style=flat-square">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/LucasBarbosaSilva/proffy?style=flat-square">
+  <img alt="GitHub license" src="https://img.shields.io/github/license/LucasBarbosaSilva/proffy?style=flat-square">
   <img alt="Made by Rocketseat" src="https://img.shields.io/badge/made%20by-Rocketseat-%237519C1?style=flat-square"><br/>
 </p>
 <p align="center">
@@ -16,11 +18,6 @@
   <a href="#mais-informações">Mais Informações</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#Contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
-
-
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
 
 ## :bookmark: O que é?
 
