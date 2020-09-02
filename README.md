@@ -78,7 +78,7 @@ Este projeto foi idealizado pensando no dia **6 de agosto**, onde se comemora o 
   $ yarn start # ou npm start
 
   # Aplicação mobile
-  $ cd mobile
+  $ cd mob
   # Instalando as dependências do projeto.
   $ yarn # ou npm install
   # Inicie a aplicação mobile
