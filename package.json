@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/knex": "^0.16.1"
+  }
+}
