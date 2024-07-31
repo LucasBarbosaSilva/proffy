@@ -1,5 +1,5 @@
 import React, {useState, FormEvent} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader';
 
 import warnignIcon from '../../assets/images/icons/warning.svg';
@@ -12,7 +12,7 @@ import api from '../../services/api';
 
 
 function TeacherList(){
-    const history = useHistory();
+    const navigate = useNavigate ();
 
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
@@ -45,7 +45,7 @@ function TeacherList(){
         }).then(() => {
             alert('Cadastro feito!')
 
-            history.push('/');
+            navigate('/');
         }).catch(() => {
             alert('Erro no cadastro')
         })

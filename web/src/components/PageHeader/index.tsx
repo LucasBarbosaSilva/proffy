@@ -9,6 +9,7 @@ import './styles.css';
 interface PageHeaderProps{
     title: string; //Para não ser obrigatória eu teria de passar um ? e definir um valor padrão
     description?: string;
+    children?: React.ReactNode;
 }
                         //Uma função do tipo componente no react
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
