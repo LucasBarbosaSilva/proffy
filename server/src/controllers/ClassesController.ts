@@ -102,4 +102,18 @@ export default class ClassesController{
     
         }
     }
+
+    async list_all (request: Request, response: Response){
+            
+        const classes = await db('classes')
+            .whereExists(function() {  //Sub query - retorna false se não existir
+                this.select('class_schedule.*')
+                .from('class_schedule')
+                .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
+            })
+            .join('users', 'classes.users_id', '=', 'users.id')
+            .select(['classes.*', 'users.*']);
+
+        return response.json(classes);
+    }
 } 
