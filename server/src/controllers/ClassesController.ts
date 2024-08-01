@@ -14,33 +14,39 @@ export default class ClassesController{
     async index (request: Request, response: Response){
         const filters = request.query;
 
-        if (!filters.week_day || !filters.subject || !filters.time ){
-            return response.status(400).json({
-                error: "Missing filters to search classes"
-            })
-        }
+        // if (!filters.week_day || !filters.subject || !filters.time ){
+        //     return response.status(400).json({
+        //         error: "Missing filters to search classes"
+        //     })
+        // }
 
-        
-        const subject = filters.subject as string;
-        const week_day = filters.week_day as string;
-        const time = filters.time as string;
-
-        const timeInMinutes = convertHourToMinute(time);
-
-        const classes = await db('classes')
-            .whereExists(function() {  //Sub query - retorna false se não existir
+        const classesQuery = db('classes')
+            .whereExists(function () {
                 this.select('class_schedule.*')
                 .from('class_schedule')
-                .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
-                .whereRaw('`class_schedule`.`week_day`= ??', [Number(week_day)])
-                .whereRaw('`class_schedule`.`from`<= ??', [timeInMinutes])
-                .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
+                .whereRaw('`class_schedule`.`class_id` = `classes`.`id`');
+            });
 
-            })
-            .where('classes.subject', '=', subject)
-            .join('users', 'classes.users_id', '=', 'users.id')
-            .select(['classes.*', 'users.*']);
+        if(filters.subject){
+            const subject = filters.subject as string;
+            classesQuery.where('classes.subject', '=', subject);
+        }
 
+        if(filters.week_day){
+            const week_day = filters.week_day as string;
+            classesQuery.whereRaw('`class_schedule`.`week_day`= ??', [Number(week_day)])
+        }
+
+        if(filters.time){
+            const time = filters.time as string;
+            const timeInMinutes = convertHourToMinute(time);
+            classesQuery.whereRaw('`class_schedule`.`from`<= ??', [timeInMinutes])
+                        .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
+        }
+            
+        const classes = await classesQuery.join('users', 'classes.users_id', '=', 'users.id')
+        .select(['classes.*', 'users.*'])
+            
 
         return response.json(classes);
 
