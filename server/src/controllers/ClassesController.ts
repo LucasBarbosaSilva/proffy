@@ -14,29 +14,24 @@ export default class ClassesController{
     async index (request: Request, response: Response){
         const filters = request.query;
 
-        // if (!filters.week_day || !filters.subject || !filters.time ){
-        //     return response.status(400).json({
-        //         error: "Missing filters to search classes"
-        //     })
-        // }
-
         const classesQuery = db('classes')
-            .whereExists(function () {
-                this.select('class_schedule.*')
-                .from('class_schedule')
-                .whereRaw('`class_schedule`.`class_id` = `classes`.`id`');
-            });
-
+            .from('class_schedule')
+            .innerJoin('classes', 'class_schedule.class_id', 'classes.id')
+            .innerJoin('users', 'classes.users_id', 'users.id')
+        
+        console.log(filters.subject)
         if(filters.subject){
             const subject = filters.subject as string;
             classesQuery.where('classes.subject', '=', subject);
         }
 
+        console.log(filters.week_day)
         if(filters.week_day){
             const week_day = filters.week_day as string;
             classesQuery.whereRaw('`class_schedule`.`week_day`= ??', [Number(week_day)])
         }
 
+        console.log(filters.time)
         if(filters.time){
             const time = filters.time as string;
             const timeInMinutes = convertHourToMinute(time);
@@ -44,10 +39,8 @@ export default class ClassesController{
                         .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
         }
             
-        const classes = await classesQuery.join('users', 'classes.users_id', '=', 'users.id')
-        .select(['classes.*', 'users.*'])
-            
-
+        console.log(classesQuery.toSQL())
+        const classes = await classesQuery.select(['classes.*', 'users.*'])           
         return response.json(classes);
 
     }

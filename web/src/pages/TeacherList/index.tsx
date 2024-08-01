@@ -34,7 +34,7 @@ function TeacherList(){
                 time
             }
         });
-        
+        console.log(response.request)
         setTeachers(response.data);
     }
     
