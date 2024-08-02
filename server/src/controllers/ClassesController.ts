@@ -39,8 +39,19 @@ export default class ClassesController{
                         .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
         }
             
-        console.log(classesQuery.toSQL())
-        const classes = await classesQuery.select(['classes.*', 'users.*'])           
+        const classes = await classesQuery.select([
+            'class_schedule.id',
+            'class_schedule.week_day',
+            'class_schedule.from',
+            'class_schedule.to',
+            'classes.subject', 
+            'classes.coast', 
+            'users.name',
+            'users.avatar',
+            'users.whatsapp',
+            'users.bio',
+        ])           
+        
         return response.json(classes);
 
     }
@@ -105,14 +116,10 @@ export default class ClassesController{
     async list_all (request: Request, response: Response){
             
         const classes = await db('classes')
-            .whereExists(function() {  //Sub query - retorna false se não existir
-                this.select('class_schedule.*')
-                .from('class_schedule')
-                .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
-            })
+            .from('classes')
             .join('users', 'classes.users_id', '=', 'users.id')
             .select(['classes.*', 'users.*']);
-
+        console.log(classes)
         return response.json(classes);
     }
 } 

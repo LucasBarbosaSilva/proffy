@@ -16,7 +16,7 @@ function TeacherList(){
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
 
-    async function allTeachers(){
+    async function allClasses(){
         api.get('all-classes').then(response => {
             
             setTeachers(response.data);
@@ -34,7 +34,7 @@ function TeacherList(){
                 time
             }
         });
-        console.log(response.request)
+        console.log(response.data)
         setTeachers(response.data);
     }
     
@@ -89,7 +89,7 @@ function TeacherList(){
             
             
             <main id="page-teachers-list" >
-            <button id="button-all-teachers" onClick={allTeachers} >Mostrar Todos Os Professores!</button>  
+            <button id="button-all-teachers" onClick={allClasses} >Mostrar Todos As Turmas!</button>  
                 { teachers.map((teacher: Teacher )  => {
                     return <TeacherItem key={ teacher.id } teacher={teacher}/>
                 }) }
